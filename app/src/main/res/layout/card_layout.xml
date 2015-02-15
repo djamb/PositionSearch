@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+  <!--  <TableRow>
+
+        <TextView
+            android:padding="3dip"
+            android:textSize="10sp"
+            android:text="hola :D"
+           />
+       <TextView
+            android:id="@+id/textView"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="10sp" />
+
+    </TableRow>-->
+</TableLayout>

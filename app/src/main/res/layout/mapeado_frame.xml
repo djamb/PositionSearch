@@ -1,0 +1,57 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true" >
+    <!-- The main content -->
+
+
+  <!--  <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height= "wrap_content"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <TextView android:id="@+id/fila"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textSize="20dp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+-->
+    <ImageView
+        android:id="@+id/map"
+
+        android:scaleType="fitXY"
+        android:layout_width="400dp"
+        android:layout_height="150dp"/>
+        <!--    <ImageView
+        android:id="@+id/coche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         /> 
+        -->
+        <ImageView
+        android:id="@+id/persona"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+       
+         /> 
+    <!-- android:layout_marginBottom="333dp" "Loaded" flash bar layout -->
+    <!--  <FrameLayout
+        android:id="@+id/FlashBarLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="72dp">
+
+    </FrameLayout>
+ 
+    <TextView
+        android:id="@+id/UpdateTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="333dp" />-->
+</FrameLayout>
