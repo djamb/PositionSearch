@@ -61,12 +61,6 @@ public class Zona  implements Parcelable  {
         return false;
     }
 
-
-
-
-
-
-
     public String getNombre() {
         return nombre;
     }

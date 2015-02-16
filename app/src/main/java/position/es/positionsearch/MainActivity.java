@@ -126,23 +126,14 @@ private ArrayList<String> mTexts;
             imgPersona.setImageResource(R.drawable.pilotoaa);
             ImageView imgMapa = (ImageView)view.findViewById(R.id.map);
             imgMapa.setImageResource(R.drawable.mapa2);
-
-
-               // ZonaEscoger = zonaElegida();
-
-//            Log.e("estoy en la zona", "" + ZonaEscoger.getCentroX() + ZonaEscoger.getCentroY());
-//            Log.e("estoy en la zona", "" + zonaEscogida.getCentroX() + zonaEscogida.getCentroY());
-
-                if (zonaEscogida != null) {
-//                    Log.e("estoy en la zona", "" + ZonaEscoger.getCentroX() + ZonaEscoger.getCentroY());
-                    Log.e("estoy en la zona", ""+ zonaEscogida.getNombre() + zonaEscogida.getCentroX() + zonaEscogida.getCentroY());
+            if (zonaEscogida != null) {
+                Log.e("estoy en la zona", ""+ zonaEscogida.getNombre() + zonaEscogida.getCentroX() + zonaEscogida.getCentroY());
                   //  dibujarImg(44, 44, imgPersona);
                     //imgPersona.setPadding(30,30,0,0);
                     modo=zonaEscogida.getNombre();
                     dibujarImg(zonaEscogida.getCentroX(), zonaEscogida.getCentroY(), imgPersona);
-                //
 
-                }
+            }
             @SuppressWarnings("unused")
             AsyncTask<?, ?, ?> task2 = new ProgressTask(getApplicationContext(), null,true).execute();
 
@@ -161,11 +152,11 @@ private ArrayList<String> mTexts;
 
 
 
-        }
+    }
 
 
     public class ProgressTask extends AsyncTask<String, Void, Boolean> {
-        // Di�logo de progreso
+        // Dislogo de progreso
        // private ProgressDialog dialog;
         private Context context;
         // Gestor de Android de redes WIFI
@@ -224,22 +215,18 @@ private ArrayList<String> mTexts;
 
             }*/
             if (ZonaEscoger == null) {
-
                 Toast aToast = Toast.makeText(context, "Se encuentra fuera de Nivel C.", Toast.LENGTH_SHORT);
                 aToast.setGravity(Gravity.CENTER, 0, 0);
                 ToastExpander.showFor(aToast, 3000);
-
             }
             if (success) {
-
-
                 mAdapter.notifyDataSetChanged();
             }
         }
 
         // Sentencias que se ejecutan en segundo plano
         protected Boolean doInBackground(final String... args) {
-            // Si no est� activa la interfaz WIFI hemos acabado
+            // Si no esta activa la interfaz WIFI hemos acabado
             // incorrectamente
 
             if (!this.manWifi.isWifiEnabled())
@@ -252,7 +239,7 @@ private ArrayList<String> mTexts;
 
                 // Buscamos las redes WIFI
                 this.manWifi.startScan();
-                // Obtenemos los resultado de la b�squeda
+                // Obtenemos los resultado de la busqueda
                 this.wifiList = this.manWifi.getScanResults();
                 // Limpiamos la matriz de resultados de la Actividad principal
                 if (context instanceof MainActivity) {
@@ -276,8 +263,6 @@ private ArrayList<String> mTexts;
                     }
                     lista.add(new Red(SSID, seg, BSSID, frec, pot));
                     mapRedes.put(SSID, lista);
-                    //redesLista.add(new Red(SSID, seg, BSSID, frec, pot));
-                    //MainActivity.redes.add(new Red(SSID, seg, BSSID, frec, pot));
                 }
                 try {
                     Thread.sleep(200);
@@ -295,8 +280,6 @@ private ArrayList<String> mTexts;
                 int i = 0;
                 List<Integer> distanciaMedia = new ArrayList<Integer>();
                 while (i < lista.size()) {
-                    //Log.e("Clave: " + key , " -> Valor: "+lista.get(i).getPotencia());
-
                     distanciaMedia.add(Integer.parseInt(lista.get(i).getPotencia()));
                     i++;
                 }
@@ -305,7 +288,6 @@ private ArrayList<String> mTexts;
                     int j = 2;
                     while (j < distanciaMedia.size() - 2) {
                         media = media + distanciaMedia.get(j);
-                        //Log.e("cvalores que cojo",""+distanciaMedia.get(i));
                         j++;
                     }
                     media = media / (distanciaMedia.size() - 4);
@@ -320,10 +302,6 @@ private ArrayList<String> mTexts;
 
                 listaRedesMedia.add(new Red(lista.get(0).getSSID(), lista.get(0).getSeguridad(), lista.get(0).getBSSID(), lista.get(0).getFrecuencia(), Integer.toString(media)));
             }
-
-            //listaRedesMedia.add(new Red("apC1", "asd", "asd", "asd","-20"));
-            //listaRedesMedia.add(new Red("apC2", "asd", "asd", "asd","-10"));
-            //listaRedesMedia.add(new Red("apB2", "asd", "asd", "asd","-30"));
             //Ordenar un arraylist de objetos por uno de sus campos
             Collections.sort(listaRedesMedia, new Comparator<Red>() {
                 @Override
@@ -331,48 +309,20 @@ private ArrayList<String> mTexts;
                     return o1.getPotencia().compareTo(o2.getPotencia());
                 }
             });
-
-
             int o = 0;
             while (o < listaRedesMedia.size()) {
                 Log.e("redes con media", "" + listaRedesMedia.get(o));
                 o++;
             }
-            //x=72y178A2   //128,178A3   //72,234B2    //128,234B3
-            ArrayList<APsInfo> listaAPs = new ArrayList<APsInfo>();
-
-            APsInfo pasillo1 = CrearAp("EseePark0001", 33, 278);
-            listaAPs.add(pasillo1);
-            APsInfo pasillo2 = CrearAp("Droiders-dev", 33, 33);
-            listaAPs.add(pasillo2);
-            APsInfo pasillo3 = CrearAp("EseePark0003", 66, 33);
-
-            listaAPs.add(pasillo3);
-            APsInfo pasillo4 = CrearAp("EseePark0004", 84, 278);
-            listaAPs.add(pasillo4);
-            APsInfo pasillo5 = CrearAp("EseePark0005", 101, 278);
-            listaAPs.add(pasillo5);
-            APsInfo pasillo6 = CrearAp("Droiders", 33, 66);
-            listaAPs.add(pasillo6);
-            APsInfo pasillo7 = CrearAp("EseePark0007", 50, 310);
-            listaAPs.add(pasillo7);
-            APsInfo pasillo8 = CrearAp("EseePark0008", 67, 310);
-            listaAPs.add(pasillo8);
-            APsInfo pasillo9 = CrearAp("EseePark0009", 84, 310);
-            listaAPs.add(pasillo9);
-            APsInfo pasillo10 = CrearAp("EseePark0010", 101, 310);
-            listaAPs.add(pasillo10);
-
-
+            //Situa los aps
+            ArrayList<APsInfo> listaAPs=new PositionSite().getSite();
             int i = 0;
             List<APsInfo> elegidosRed = new ArrayList<APsInfo>();
             APsInfo pegadoAp = null;
             while (i < listaRedesMedia.size()) {
                 APsInfo apBueno = listaRedesMedia.get(i).APdeRed(listaAPs);
                 if (apBueno != null) {
-                    //Log.e("el ajuste de ruido esta  "+MainActivity.ajusteRuido,"ajuste modelo  "+MainActivity.ajusteModelo);
                     apBueno.setPotencia(Integer.parseInt(listaRedesMedia.get(i).getPotencia()));
-
                     if (Integer.parseInt(listaRedesMedia.get(i).getPotencia()) > (ajusteRuido) && pegadoAp == null) {
                         pegadoAp = apBueno;
                         Log.e("pillo ap unico", "ap unico" + apBueno.getSsid());
@@ -394,7 +344,6 @@ private ArrayList<String> mTexts;
                     ModeloRappaport rp = new ModeloRappaport(elegidosRed.get(0), elegidosRed.get(1), elegidosRed.get(2));
                     ZonaEscoger = rp.puntoResultado();
                 } else {
-                    //ZonaEscoger=new Zona("Vaya a Nivel C",elegidosRed.get(0),elegidosRed.get(1),elegidosRed.get(2));
                     ZonaEscoger = CrearZona("Vaya a Nivel C.", elegidosRed.get(0), elegidosRed.get(1), elegidosRed.get(2));
                 }
             }
@@ -402,83 +351,48 @@ private ArrayList<String> mTexts;
             if (elegidosRed.size() == 2) {
                 int xNew = (elegidosRed.get(0).getEjeX() + elegidosRed.get(1).getEjeX()) / 2;
                 int yNew = (elegidosRed.get(0).getEjeY() + elegidosRed.get(1).getEjeY()) / 2;
-                //Esto metod viejo muy valioso	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                //APsInfo apNew=new APsInfo("apNew",xNew,yNew);
                 APsInfo apNew = CrearAp("apNew", xNew, yNew);
-                //Zona zonaCoordenadasAp=new Zona("Vaya a Nivel C", apNew, apNew, apNew);
                 Zona zonaCoordenadasAp = CrearZona("Vaya a Nivel C.", apNew, apNew, apNew);
                 ZonaEscoger = zonaCoordenadasAp;
             }
             if (elegidosRed.size() == 1) {
-                //Zona zonaCoordenadasAp=new Zona("Vaya a Nivel C", elegidosRed.get(0), elegidosRed.get(0), elegidosRed.get(0));
                 Zona zonaCoordenadasAp = CrearZona("Vaya a Nivel C.", elegidosRed.get(0), elegidosRed.get(0), elegidosRed.get(0));
                 ZonaEscoger = zonaCoordenadasAp;
             }
             if (pegadoAp != null) {
-                //Zona zonaCoordenadasAp=new Zona("Vaya a Nivel C", pegadoAp, pegadoAp, pegadoAp);
                 Zona zonaCoordenadasAp = CrearZona("Vaya a Nivel C.", pegadoAp, pegadoAp, pegadoAp);
                 ZonaEscoger = zonaCoordenadasAp;
             }
-            //prueba de rappaport
-		/*EseePark0002.setPotencia(-60);
-		EseePark0005.setPotencia(-61);
-		EseePark0006.setPotencia(-61);
-		ModeloRappaport rp=new ModeloRappaport(EseePark0002, EseePark0005, EseePark0006);
-		ZonaEscoger=rp.puntoResultado();
-		Log.e("X e Y son:",ZonaEscoger.getCentroX()+"  "+ZonaEscoger.getCentroY());
-		*/
-            //si esta fuera de rango borrar en la buena
-            if (context instanceof MainActivity) {
-                if (elegidosRed.size() >= 1) {
-                    if (elegidosRed.get(0).getPotencia() < -65) {
-                        elegidosRed.get(0).setEjeX(70);
-                        elegidosRed.get(0).setEjeY(130);
-                        //Zona zonaCoordenadasApas=new Zona("Uste",  elegidosRed.get(0),  elegidosRed.get(0),  elegidosRed.get(0));
-                        Zona zonaCoordenadasApas = CrearZona("Uste", elegidosRed.get(0), elegidosRed.get(0), elegidosRed.get(0));
-                        ZonaEscoger = zonaCoordenadasApas;
-                    }
-
-                }
+            if (elegidosRed.size() >= 1) {
+              if (elegidosRed.get(0).getPotencia() < -65) {
+                elegidosRed.get(0).setEjeX(70);
+                elegidosRed.get(0).setEjeY(130);
+                Zona zonaCoordenadasApas = CrearZona("Fuera de rango", elegidosRed.get(0), elegidosRed.get(0), elegidosRed.get(0));
+                ZonaEscoger = zonaCoordenadasApas;
+              }
             }
 
             //Para posicionamiento temporal
             String zonaEl = "";
-                //Borrar
-                zonaEl = "Se encuentra fuera de Nivel C.";
-                if (elegidosRed.size() >= 1) {
-                    if (elegidosRed.get(0).getPotencia() > -65) {
-                        if (elegidosRed.get(0).getSsid().compareTo("EseePark0001") == 0 || elegidosRed.get(0).getSsid().compareTo("Droiders-dev") == 0 || elegidosRed.get(0).getSsid().compareTo("EseePark0003") == 0 || elegidosRed.get(0).getSsid().compareTo("EseePark0004") == 0 || elegidosRed.get(0).getSsid().compareTo("EseePark0005") == 0) {
-                            zonaEl = "Está en frutería "+elegidosRed.get(0).getSsid();
-                        } else {
-                            zonaEl = "Está en carnicería "+elegidosRed.get(0).getSsid();
-                        }
-                    }else{
-
-                    }
-
+            zonaEl = "Se encuentra fuera de Nivel C.";
+            if (elegidosRed.size() >= 1) {
+              if (elegidosRed.get(0).getPotencia() > -65) {
+                if (elegidosRed.get(0).getSsid().compareTo("EseePark0001") == 0 || elegidosRed.get(0).getSsid().compareTo("Droiders-dev") == 0 || elegidosRed.get(0).getSsid().compareTo("EseePark0003") == 0 || elegidosRed.get(0).getSsid().compareTo("EseePark0004") == 0 || elegidosRed.get(0).getSsid().compareTo("EseePark0005") == 0) {
+                  zonaEl = "Está en frutería "+elegidosRed.get(0).getSsid();
+                }else{
+                  zonaEl = "Está en carnicería "+elegidosRed.get(0).getSsid();
                 }
-
-
-/*
-                if (elegidosRed.size()>=1 ){
-                    //	Zona zonaCoordenadasApas=new Zona(zonaEl,  elegidosRed.get(0),  elegidosRed.get(0),  elegidosRed.get(0));
-                    Zona zonaCoordenadasApas=CrearZona(zonaEl,  elegidosRed.get(0),  elegidosRed.get(0),  elegidosRed.get(0));
-                    ZonaEscoger=zonaCoordenadasApas;
-                }
-*/
-            if (ZonaEscoger != null) {
-                //MainActivity.zonas.add(ZonaEscoger);
-                MainActivity.zonaEscogida=ZonaEscoger;
+              }
             }
-
-
+            if (ZonaEscoger != null) {
+              MainActivity.zonaEscogida=ZonaEscoger;
+            }
             // Indicamos que la tarea ha acabado correctamente
             return true;
         }
 
 
-
-
+      //Crea un ap nuevo
         public APsInfo CrearAp( String ssid ,int ejeX ,int ejeY){
             APsInfo pasillo1=new APsInfo();
             pasillo1.ssid =ssid;
@@ -486,7 +400,7 @@ private ArrayList<String> mTexts;
             pasillo1.ejeY=ejeY;
             return pasillo1;
         }
-
+        //Crea una zona para triangular
         public Zona CrearZona( String nombre, APsInfo APsInfo1, APsInfo APsInfo2, APsInfo APsInfo3){
             Zona zona=new Zona();
             zona.nombre =nombre;
